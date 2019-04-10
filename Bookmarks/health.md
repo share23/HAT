@@ -8,6 +8,6 @@
 
 ## 健康知识
 
-了解健康知识&nbsp;&nbsp;&nbsp;&nbsp; [默沙东诊疗手册](https://www.msdmanuals.cn/)
+了解健康知识&nbsp;&nbsp;&nbsp;&nbsp; [默沙东诊疗手册](https://www.msdmanuals.cn/?_blank)
 
 待补充。。。
