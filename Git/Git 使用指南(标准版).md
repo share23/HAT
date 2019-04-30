@@ -1,6 +1,6 @@
 # Git 使用指南（标准版）
 
-## 说明
+## 0. 说明
 
 学习和理解 [Git使用教程,最详细，最傻瓜，最浅显，真正手把手教](https://zhuanlan.zhihu.com/p/30044692)
 
@@ -8,9 +8,9 @@
 
 [Git 分支在线练习](https://learngitbranching.js.org/?NODEMO)
 
-## 介绍
+## 1. 介绍
 
-### Git 是什么
+### 1.1 Git 是什么
 
 Git 是分布式版本控制系统
 
@@ -23,7 +23,7 @@ Git 是分布式版本控制系统
 3. Repository：仓库区（或本地仓库）
 4. Remote：远程仓库
 
-### SVN 与 Git 的最主要的区别
+### 1.2 SVN 与 Git 的最主要的区别
 
 ``` bash
 SVN 是集中式版本控制系统，版本库是集中放在中央服务器的，而干活的时候，用的都是自己的电脑，所以首先要从中央服务器哪里得到最新的版本，然后干活，干完后，需要把自己做完的活推送到中央服务器。集中式版本控制系统是必须联网才能工作，如果在局域网还可以，带宽够大，速度够快，如果在互联网下，如果网速慢的话，就纳闷了。
@@ -31,9 +31,9 @@ SVN 是集中式版本控制系统，版本库是集中放在中央服务器的�
 Git 是分布式版本控制系统，那么它就没有中央服务器的，每个人的电脑就是一个完整的版本库，这样，工作的时候就不需要联网了，因为版本都是在自己的电脑上。既然每个人的电脑都有一个完整的版本库，那多个人如何协作呢？比如说自己在电脑上改了文件A，其他人也在电脑上改了文件A，这时，你们两之间只需把各自的修改推送给对方，就可以互相看到对方的修改了。
 ```
 
-## 安装 Git
+## 2. 安装 Git
 
-### 在 Windows 上安装 Git
+### 2.1 在 Windows 上安装 Git
 
 &nbsp;&nbsp;&nbsp;&nbsp;[Git 下载](https://git-scm.com/downloads)
 
@@ -53,15 +53,15 @@ git config -- global user.email "xxxxxxxx@gmail.com"
 
 注意：`git config --global` 参数，有了这个参数，表示你这台机器上所有的 Git 仓库都会使用这个配置，当然你也可以对某个仓库指定的不同的用户名和邮箱。
 
-### 在 Centos 下安装 Git
+### 2.2 在 Centos 下安装 Git
 
 ``` bash
 sudo yum install git
 ```
 
-## 操作
+## 3. 操作
 
-### 创建版本库
+### 3.1 创建版本库
 
 ``` bash
     版本库又名仓库，英文名 repository ,你可以简单的理解一个目录，这个目录里面的所有文件都可以被 Git 管理起来，每个文件的修改，删除，Git都能跟踪，以便任何时刻都可以追踪历史，或者在将来某个时刻还可以将文件”还原”。
@@ -73,7 +73,7 @@ sudo yum install git
 # 将当前目录变成 git 可以管理的仓库
     git init
 ```
-### 添加文件到版本库
+### 3.2 添加文件到版本库
 &nbsp;&nbsp;&nbsp;&nbsp;在仓库中新建一个文件 `readme.md`，添加相应的内容，然后进行如下操作
 
 ``` bash
@@ -96,7 +96,7 @@ git diff readme.md
 # 6. 第一次提交到远程
 ```
 
-### 版本回退
+### 3.3 版本回退
 
 &nbsp;&nbsp;&nbsp;&nbsp;为 readme.md 添加一行内容然后添加到本地仓库
 
@@ -130,7 +130,7 @@ git reflog
 git reset --hard 6fcfc89
 ```
 
-### 工作区与暂存区的区别
+### 3.4 工作区与暂存区的区别
 
 &nbsp;&nbsp;&nbsp;&nbsp;区别
 ``` bash
@@ -147,7 +147,7 @@ git reset --hard 6fcfc89
 
 &nbsp;&nbsp;&nbsp;&nbsp;在多次添加文件之后可以通过 `git commit` 一次性提交
 
-### 撤销修改和删除文件
+### 3.5 撤销修改和删除文件
 
 &nbsp;&nbsp;&nbsp;&nbsp;撤销修改
 
@@ -170,9 +170,9 @@ rm readme.md
 git checkout -- readme.md
 ```
 
-### 远程仓库
+### 3.6 远程仓库
 
-#### 配置 GitHub
+#### 3.6.1 配置 GitHub
 
 &nbsp;&nbsp;&nbsp;&nbsp;登陆注册 GitHub [https://github.com/](https://github.com/)
 
@@ -193,7 +193,7 @@ ssh-keygen -t rsa -C "Github的注册邮箱地址"
 
 (PS: id_rsa 是私钥，不能泄露出去，id_rsa.pub 是公钥，可以放心地告诉任何人)
 
-#### 添加远程仓库
+#### 3.6.2 添加远程仓库
 
 &nbsp;&nbsp;&nbsp;&nbsp;现在的情景是：我们已经在本地创建了一个 Git仓库 后，又想在 GitHub 创建一个 Git仓库，并且希望这两个仓库进行远程同步，这样 GitHub 的仓库可以作为备份，又可以其他人通过该仓库来协作
 
@@ -219,19 +219,19 @@ git push origin master
 # 还会把本地的 master 分支和远程的 master 分支关联起来
 ```
 
-#### 从远程仓库克隆项目到本地
+#### 3.6.3 从远程仓库克隆项目到本地
 
 ``` bash
 git clone https://github.com/username/testgit
 ```
 
-### 创建与合并分支
+### 3.7 创建与合并分支
 
-#### 分支说明
+#### 3.7.1 分支说明
 
 每次提交，Git 都把它们串成一条时间线，这条时间线就是一个分支。截止到目前，只有一条时间线，在 Git 里，这个分支叫主分支，即 master 分支。HEAD 严格来说不是指向提交，而是指向 master ，master 才是指向提交的，所以，HEAD 指向的就是当前分支。
 
-#### Demo
+#### 3.7.2 Demo
 
 创建 dev 分支，并切换到该分支
 
@@ -259,7 +259,7 @@ git checkout 命令加上 –b参数表示创建并切换，相当于如下2条�
 
 ![Git_branch2.jpg](pic/Git_branch2.jpg)
 
-#### 合并分支
+#### 3.7.3 合并分支
 
 ``` bash 
 # 在 master 分支上合并 dev 分支的内容
@@ -272,7 +272,7 @@ git checkout 命令加上 –b参数表示创建并切换，相当于如下2条�
 
 注意到上面的 Fast-forward 信息，Git 告诉我们，这次合并是“快进模式”，也就是直接把 master 指向 dev 的当前提交，所以合并速度非常快。
 
-#### 删除分支
+#### 3.7.4 删除分支
 
 ``` bash
 # 删除 dev 分支
@@ -284,7 +284,7 @@ git checkout 命令加上 –b参数表示创建并切换，相当于如下2条�
 
 ![Git_branch4.jpg](pic/Git_branch4.jpg)
 
-#### 分支操作命令合集
+#### 3.7.5 分支操作命令合集
 
 ``` bash
 # 查看分支
@@ -306,7 +306,7 @@ git checkout 命令加上 –b参数表示创建并切换，相当于如下2条�
     git branch –d name
 ```
 
-#### 分支冲突
+#### 3.7.6 分支冲突
 
 ``` bash
 # 新建并切换分支
@@ -378,7 +378,7 @@ Git用<<<<<<<，=======，>>>>>>>标记出不同分支的内容，其中<<<HEAD�
 
 ![Git_branch9.jpg](pic/Git_branch9.jpg)
 
-#### 分支管理策略
+#### 3.7.7 分支管理策略
 
 通常合并分支时，git 一般使用 `Fast forward` 模式，在这种模式下，删除分支后，会丢掉分支信息，现在我们来使用带参数 `–no-ff` 来禁用 `Fast forward` 模式
 
@@ -388,7 +388,7 @@ Git用<<<<<<<，=======，>>>>>>>标记出不同分支的内容，其中<<<HEAD�
 
 分支策略：首先 master主分支 应该是非常稳定的，也就是用来发布新版本，一般情况下不允许在上面干活，干活一般情况下在新建的 dev分支 上干活，干完后，比如上要发布，或者说 dev分支 代码稳定后可以合并到 主分支master 上来。
 
-### Bug 分支
+### 3.8 Bug 分支
 
 在开发中，会经常碰到bug问题，那么有了bug就需要修复，在Git中，分支是很强大的，每个bug都可以通过一个临时分支来修复，修复完成后，合并分支，然后将临时的分支删除掉。
 
@@ -423,7 +423,7 @@ Git用<<<<<<<，=======，>>>>>>>标记出不同分支的内容，其中<<<HEAD�
 
 ![Git_branch16.jpg](pic/Git_branch16.jpg)
 
-### 多人协作
+### 3.9 多人协作
 
 当你从远程库克隆时候，实际上Git自动把本地的master分支和远程的master分支对应起来了，并且远程库的默认名称是origin。
 
@@ -433,7 +433,7 @@ Git用<<<<<<<，=======，>>>>>>>标记出不同分支的内容，其中<<<HEAD�
 
 ![Git_branch17.jpg](pic/Git_branch17.jpg)
 
-#### 推送分支
+#### 3.9.1 推送分支
 
 推送分支就是把该分支上所有本地提交到远程库中，推送时，要指定本地分支，这样，Git就会把该分支推送到远程库对应的远程分支上
 
@@ -453,7 +453,7 @@ master分支 是主分支，因此要时刻与远程同步。
 
 一些 修复bug分支 不需要推送到远程去，可以先合并到主分支上，然后把主分支master推送到远程去。
 
-#### 抓取分支
+#### 3.9.2 抓取分支
 
 多人协作时，大家都会往 master分支 上推送各自的修改。现在我们可以模拟另外一个同事，可以在另一台电脑上（注意要把SSH key添加到github上）或者同一台电脑上另外一个目录克隆，新建一个目录名字叫testgit2
 
@@ -507,14 +507,11 @@ git pull 也失败了，原因是没有指定 本地dev分支 与 远程origin/d
 
 如果合并有冲突，则需要解决冲突，并在本地提交。再用 `git push origin branch-name` 推送。
 
-
-
-
-## 阮老师整理的部分命令
+## 4. 阮老师整理的部分命令
 
 [阮老师整理的部分命令](http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html)
 
-### 新建代码库
+### 4.1 新建代码库
 
 ``` bash
 # 在当前目录新建一个Git代码库
@@ -527,7 +524,7 @@ $ git init [project-name]
 $ git clone [url]
 ```
 
-### 配置
+### 4.2 配置
 
 Git 的设置文件为 `.gitconfig` ，它可以在用户主目录下（全局配置），也可以在项目目录下（项目配置）
 
@@ -543,7 +540,7 @@ $ git config [--global] user.name "[name]"
 $ git config [--global] user.email "[email address]"
 ```
 
-### 增加/删除文件
+### 4.3 增加/删除文件
 
 ``` bash
 # 添加指定文件到暂存区
@@ -569,7 +566,7 @@ $ git rm --cached [file]
 $ git mv [file-original] [file-renamed]
 ```
 
-### 代码提交
+### 4.4 代码提交
 ``` bash
 # 提交暂存区到仓库区
 $ git commit -m [message] 
@@ -591,7 +588,7 @@ $ git commit --amend -m [message]
 $ git commit --amend [file1] [file2] ...
 ```
 
-### 分支
+### 4.5 分支
 
 ``` bash
 # 列出所有本地分支
@@ -638,7 +635,7 @@ $ git push origin --delete [branch-name]
 $ git branch -dr [remote/branch]
 ```
 
-### 标签
+### 4.6 标签
 
 ``` bash
 # 列出所有tag
@@ -669,7 +666,7 @@ $ git push [remote] --tags
 $ git checkout -b [branch] [tag]
 ```
 
-### 查看信息
+### 4.7 查看信息
 
 ``` bash
 # 显示有变更的文件
@@ -734,7 +731,7 @@ $ git show [commit]:[filename]
 $ git reflog
 ```
 
-### 远程同步
+### 4.8 远程同步
 
 ``` bash
 # 下载远程仓库的所有变动
@@ -762,7 +759,7 @@ $ git push [remote] --force
 $ git push [remote] --all
 ```
 
-### 撤销
+### 4.9 撤销
 
 ``` bash
 # 恢复暂存区的指定文件到工作区
